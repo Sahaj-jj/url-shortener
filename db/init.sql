@@ -1,5 +1,3 @@
-CREATE DATABASE url_shortener_db;
-
 \c url_shortener_db;
 
 CREATE TABLE urls (

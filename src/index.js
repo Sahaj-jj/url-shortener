@@ -10,10 +10,6 @@ app.use(express.json());
 app.use("/urls", urlRoutes);
 app.use("/r", redirectionRoutes);
 
-app.get("/", (_, res) => {
-    res.send("Hello");
-});
-
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
 });
