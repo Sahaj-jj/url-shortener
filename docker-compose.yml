@@ -33,7 +33,6 @@ services:
         volumes:
             - ./client/dist:/usr/share/nginx/html
         ports:
-            - "8081:3000"
             - "8080:80"
         depends_on:
             - server
