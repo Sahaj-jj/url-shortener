@@ -6,3 +6,14 @@ CREATE TABLE urls (
     original_url TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    is_authenticated BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE user_urls (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id),
+    url_id INTEGER REFERENCES urls(id)
+);
