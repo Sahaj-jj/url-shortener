@@ -16,7 +16,6 @@ function generateBase62() {
         remaining = Math.floor(remaining / base);
     } while (remaining > 0);
 
-    // Pad the result with leading zeros to ensure it is 7 digits long
     if (result.length > 7) {
         return generateBase62();
     }
