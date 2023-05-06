@@ -1,4 +1,5 @@
 const express = require("express");
+const authRoutes = require("./routes/auth");
 const urlRoutes = require("./routes/urls");
 const redirectionRoutes = require("./routes/redirection");
 const userRoutes = require("./routes/users");
@@ -14,8 +15,9 @@ app.use(
     })
 );
 
+app.use("/auth", authRoutes);
 app.use("/urls", urlRoutes);
-app.use("/user", userRoutes);
+app.use("/users", userRoutes);
 app.use("/r", redirectionRoutes);
 
 app.listen(PORT, () => {
