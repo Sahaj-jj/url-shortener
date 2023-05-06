@@ -15,5 +15,7 @@ CREATE TABLE users (
 CREATE TABLE user_urls (
     id SERIAL PRIMARY KEY,
     user_id INTEGER REFERENCES users(id),
-    url_id INTEGER REFERENCES urls(id)
+    url_id INTEGER REFERENCES urls(id),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT user_urls_unique_user_id_url_id UNIQUE (user_id, url_id)
 );

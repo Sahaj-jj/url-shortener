@@ -18,9 +18,17 @@ async function createUrl(originalUrl) {
 // Handler function to add a URL to a user's list
 async function addUserUrl(userId, urlId) {
     const insertResult = await pool.query(
-        "INSERT INTO user_urls (user_id, url_id) VALUES ($1, $2) RETURNING id",
+        "INSERT INTO user_urls (user_id, url_id) VALUES ($1, $2) " +
+            "ON CONFLICT (user_id, url_id) DO NOTHING " +
+            "RETURNING id",
         [userId, urlId]
     );
+
+    // Check if a row was actually inserted
+    if (insertResult.rowCount === 0) {
+        return null;
+    }
+
     const userUrlId = insertResult.rows[0].id;
     return userUrlId;
 }
