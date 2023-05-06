@@ -8,10 +8,10 @@ CREATE TABLE urls (
 );
 
 CREATE TABLE users (
-    id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    email VARCHAR(255) NOT NULL,
-    password_hash CHAR(60) NOT NULL,
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(255),
+    email VARCHAR(255),
+    password_hash CHAR(60),
     is_authenticated BOOLEAN NOT NULL DEFAULT FALSE
 );
 
