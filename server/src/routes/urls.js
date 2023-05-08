@@ -65,14 +65,20 @@ router.get("/:shortCode", async (req, res) => {
     const shortCode = req.params.shortCode;
 
     // Find the URL with the specified short code
-    const result = await pool.query(
-        "SELECT original_url FROM urls WHERE short_code = $1",
+    const {
+        rowCount,
+        rows: [url],
+    } = await pool.query(
+        "SELECT id, original_url FROM urls WHERE short_code = $1",
         [shortCode]
     );
 
-    if (result.rowCount > 0) {
-        const originalUrl = result.rows[0].original_url;
-        return res.redirect(originalUrl);
+    if (rowCount > 0) {
+        return res.json({
+            id: url.id,
+            shortCode,
+            originalUrl: url.original_url,
+        });
     } else {
         return res.status(404).json({ message: "URL not found" });
     }
