@@ -18,7 +18,7 @@ app.use(
 app.use("/auth", authRoutes);
 app.use("/urls", urlRoutes);
 app.use("/users", userRoutes);
-app.use("/r", redirectionRoutes);
+app.use("/", redirectionRoutes);
 
 app.listen(PORT, () => {
     console.log(`Listening on port: ${PORT}`);
