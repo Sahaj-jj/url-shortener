@@ -12,7 +12,11 @@ CREATE TABLE users (
     name VARCHAR(255),
     email VARCHAR(255),
     password_hash CHAR(60),
-    is_authenticated BOOLEAN NOT NULL DEFAULT FALSE
+    is_authenticated BOOLEAN NOT NULL DEFAULT FALSE,
+    google_id VARCHAR(255),
+    google_access_token VARCHAR(255),
+    google_refresh_token VARCHAR(255),
+    profile_picture VARCHAR(255)
 );
 
 CREATE TABLE user_urls (

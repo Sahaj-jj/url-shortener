@@ -1,5 +1,6 @@
 const express = require("express");
 const pool = require("../../db/pg");
+const passport = require("passport");
 const sessionChecker = require("../middlewares/sessionChecker");
 const router = express.Router();
 const bcrypt = require("bcrypt");
@@ -125,5 +126,18 @@ router.get("/logout", async (req, res) => {
         return res.status(500);
     }
 });
+
+router.get(
+    "/google",
+    passport.authenticate("google", { scope: ["profile", "email"] })
+);
+
+// Google authentication callback route
+router.get(
+    "/google/callback",
+    passport.authenticate("google", {
+        successRedirect: "/app",
+    })
+);
 
 module.exports = router;
